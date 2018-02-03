@@ -1,0 +1,121 @@
+<html>
+	<body>
+	
+		<script>
+			function button_handler()
+			{
+				var a= Number(document.getElementById('a').value);
+				var b= Number(document.getElementById('b').value);
+				var c= Number(document.getElementById('c').value);
+				var s= calculate(a,b,c);
+				var text=document.getElementById('res');
+				text.value=s;
+			}
+			function calculate(a,b,c)
+			{
+				var result=a+b+c;
+				return result;
+			}
+			
+			function button_handler2()
+			{
+				var a= Number(document.getElementById('a').value);
+				var b= Number(document.getElementById('b').value);
+				var c= Number(document.getElementById('c').value);
+				var s= calculate2(a,b,c);
+				var text=document.getElementById('res2');
+				text.value=s;
+			}
+			function calculate2(a,b,c)
+			{
+				var result=a+b+c;
+				if(result<=27)
+				{
+					result=Math.pow(result,1/3);
+				}
+				else 
+				{
+					result=Math.pow(result,3);
+				}
+				return result;
+			}
+			
+			function button_handler3()
+			{
+				var x1text=document.getElementById('x1');
+				var x2text=document.getElementById('x2');
+				var a= Number(document.getElementById('a').value);
+				var b= Number(document.getElementById('b').value);
+				var c= Number(document.getElementById('c').value);
+				if(!(isNaN(a) && isNaN(b) && isNaN(c)))
+				{
+				var d= Math.pow(b,2)-4*a*c;
+					var text=document.getElementById('d');
+					text.value=d;
+					
+					if(d==0)
+					{
+					text.value="";
+						x2text.value="";
+						x1text.value=-b/(2*a);
+					}
+					if(d>0)
+					{
+						x2text.value=(-b+Math.pow(d,1/2))/(2*a);
+						x1text.value=(-b-Math.pow(d,1/2))/(2*a);
+					}
+					if(d<0)
+					{
+						x2text.value=-b/(2*a)+"+i"+Math.pow(-d,1/2);
+						x1text.value=-b/(2*a)+"-i"+Math.pow(-d,1/2);
+					}
+				}
+			}
+		</script>
+		
+		<p>
+			<strong> 
+				введите а:
+			</strong>
+			<input id="a" maxlength="25" size="40" value="0">
+		</p>
+		<p>
+			<strong> 
+				введите b:
+			</strong>
+			<input id="b" maxlength="25" size="40" value="0">
+		</p>
+		<p>
+			<strong> 
+				введите c:
+			</strong>
+			<input id="c" maxlength="25" size="40" value="0">
+		</p>
+		
+		
+		<p>
+			<button type="button" onclick=button_handler() >
+				сумма
+			</button>
+		</p>		
+			<input id="res" maxlength="25" size="40" value="0">
+			
+		<p>
+			<button type="button" onclick=button_handler2() >
+				вычислить
+			</button>
+		</p>		
+			<input id="res2" maxlength="25" size="40" value="0">
+			
+		<p>
+			<button type="button" onclick=button_handler3() >
+				квадратное кравнение
+			</button>
+		</p>		
+			<input id="d" maxlength="25" size="40" value="0">
+			<input id="x1" maxlength="25" size="40" value="0">
+			<input id="x2" maxlength="25" size="40" value="0">
+	</body>
+</html>
+		
+	

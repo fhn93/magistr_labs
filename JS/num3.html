@@ -1,0 +1,56 @@
+<html>
+	<body>
+		<input type="checkBox" id="figure"/>
+		<label for="figure"> 
+			figure is rect?
+		</label>
+		<canvas width=300 height=400 id="canvas" onclick="canvas_OnClick()">
+		
+		</canvas>
+		
+		<script>
+			window.onload=winLoad;
+			var canvas = document.getElementById('canvas');
+			
+			function DrawArc(x,y,r)
+			{
+				figure=document.getElementById('figure');
+				conext=canvas.getContext("2d");
+				conext.beginPath();
+				
+				if(figure.checked)
+				{
+					conext.rect(x-r,y-r,2*r,2*r);
+					conext.fillStyle='green';
+					conext.fill();
+					conext.lineWidth=1;
+					conext.strokeStile='black';
+					conext.stroke();
+				}
+				else
+				{
+					conext.arc(x,y,r,0,2*Math.PI,true);
+					conext.fillStyle='red';
+					conext.fill();
+					conext.lineWidth=1;
+					conext.strokeStile='yellow';
+					conext.stroke();
+				}
+			}
+			
+			function canvas_OnClick()
+			{
+				r=50;
+				x=window.event.clientX-canvas.offsetLeft;
+				y=window.event.clientY-canvas.offsetTop;
+				DrawArc(x,y,r);
+			}
+			
+			function winLoad()
+			{
+				canvas.width=window.innerWidth;
+				canvas.height=window.innerHeight;
+			}
+		</script>
+	</body>
+</html>

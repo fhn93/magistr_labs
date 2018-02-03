@@ -1,0 +1,65 @@
+<html>
+	<body>
+		<label for="charType">Chart type</label>
+		<select name="charType" id="charType" onchange="onSelectChange(id)">
+			<optgroup label="Chart type">
+				<option value="flat">Flat</option>
+				<option value="3D">3D</option>
+				<option value="donat">Donat</option>
+			</optgroup>
+		</select>	
+		<br/>
+		<div id="mychart" style="width: 900px; height: 500px"></div>
+		
+		
+		
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			var charType="flat"; 
+			var chartOptions; 
+			google.charts.load('current', {'packges':['corechart']}); 
+			google.charts.setOnLoadCallback(drawChart);  
+			
+			function onSelectChange(selectId)
+			{
+				e = document.getElementById(selectId);
+				charType=e.options[e.selectedIndex].value;
+				google.charts.load('current', {'packges':['corechart']}); 
+				google.charts.setOnLoadCallback(drawChart);  
+			}
+			
+			function drawChart()
+			{
+				var Data= google.visualization.arrayToDataTable([
+				['About writers','Books'],
+				['Russian',10],
+				['British',8],
+				['Italian',12],
+				['American',5]]
+				);
+				
+				switch(charType)
+				{
+					case "flat":
+						chartOptions={ title:'Любимаялитература',}
+					break;
+					case "3D":
+						chartOptions={ title:'Любимаялитература', is3D: true,}
+					break;
+					case "donut":
+						chartOptions={ title:'Любимаялитература', pieHole: 0.5,}
+					break;
+					default: break;
+				}
+				
+				var chart = new google.visualization.PieChart(document.getElementById('mychart'));
+				chart.draw(data, chartOptions);
+				
+			}
+		</script>
+	</body>
+
+	
+	
+
+</html>

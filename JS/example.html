@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+		var charType="flat"; 
+		var chartOptions; 
+		var dataType="lit"
+		var Data
+		var myTitle;
+		
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+	  
+		function drawChart() {
+
+			switch(dataType)
+			{
+				case "lit":
+					Data= new google.visualization.arrayToDataTable([
+					['About writers','Books'],
+					['Фантастика',10],
+					['Романы',8],
+					['Детективы',12],
+					['Ужасы',5]]);
+					myTitle="Любимая литература"
+				break
+				
+				case "sport":
+					Data= new google.visualization.arrayToDataTable([
+					['About writers','Books'],
+					['Футбол',15],
+					['Волейбол',8],
+					['Хоккей',13]]);
+					myTitle="Любимый спорт"
+				break
+				
+				case "musick":
+					Data= new google.visualization.arrayToDataTable([
+					['About writers','Books'],
+					['Русская',10],
+					['Британская',8],
+					['Итальянская',12],
+					['Американская',5]]);
+					myTitle="Любимая музыка"
+				break
+				
+				default: break;
+			}
+			
+
+			switch(charType)
+			{
+				case "flat":
+					chartOptions={ title:myTitle,}
+				break;
+				case "3D":
+					chartOptions={ title:myTitle, is3D: true,}
+				break;
+				case "donut":
+					chartOptions={ title:myTitle, pieHole: 0.5,}
+				break;
+				default: break;
+			}
+
+			var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+			chart.draw(Data, chartOptions);
+		}
+	  
+		function onSelectChange(selectId)
+		{	
+			e = document.getElementById(selectId);
+			charType=e.options[e.selectedIndex].value;
+			google.charts.load('current', {'packges':['corechart']}); 
+			google.charts.setOnLoadCallback(drawChart);  
+		}
+		
+		function onSelectDataChange(selectId)
+		{	
+			e = document.getElementById(selectId);
+			dataType=e.options[e.selectedIndex].value;
+			<!-- google.charts.load('current', {'packges':['corechart']});  -->
+			google.charts.setOnLoadCallback(drawChart);  
+		}
+    </script>
+  </head>
+  <body>
+		<label for="charType">тип диаграммы</label>
+		<select name="charType" id="charType" onchange="onSelectChange(id)">
+			<optgroup label="Тип диаграммы">
+				<option value="flat">Плоская</option>
+				<option value="3D">3D</option>
+				<option value="donat">Тор</option>
+			</optgroup>
+		</select>
+		
+		<label for="dataType">Тип данных</label>
+		<select name="dataType" id="dataType" onchange="onSelectDataChange(id)">
+			<optgroup label="Увлечения">
+				<option value="lit">Литература</option>
+				<option value="sport">спорт</option>
+				<option value="musick">музыка</option>
+			</optgroup>
+		</select>
+		
+		
+		<div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>

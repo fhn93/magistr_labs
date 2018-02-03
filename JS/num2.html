@@ -1,0 +1,76 @@
+<html>
+	<body>
+		<font color="#00000" size="24">
+			<input type="checkBox" id="checkStudent" onchange="checkStudent_OnChange(this)"/>
+			<label for=checkStudent">
+				Are you a student?
+			</label>
+			<br/>
+			
+			<input type="checkBox" id="checkHappy" onchange="checkHappy_OnChange(this)"/>
+			<label for=checkStudent">
+				Are you a Happy?
+			</label>
+			<br/>
+			
+			<label id="labelResult">
+				:|
+			</label>
+			<label for="labelResult">
+				Your state
+			</label>
+			<br/>
+			<button type="button" onclick="button_hendler()">
+				The question!!!
+			</button>
+		</font>
+		
+		<script>
+			var label = document.getElementById('labelResult');
+			
+			function button_hendler()
+			{
+				var student = document.getElementById('checkStudent')
+				
+				if(confirm("Do you want to eat?"))
+				{
+					alert("You are really a student!!!");
+					student.checked=true;
+					student.onchange();
+				}
+				else
+				{
+					alert("You are not a student!!!");
+					student.checked=false;
+					<!-- student.onchange(); -->
+				}
+			}
+			
+			function checkStudent_OnChange(element)
+			{
+				
+				if(element.checked)
+				{
+					label.style.color='#00FF00';
+				}
+				else
+				{
+					label.style.color='#000000';
+				}
+			}
+			
+			function checkHappy_OnChange(element)
+			{
+				
+				if(element.checked)
+				{
+					label.innerText= ':)';
+				}
+				else
+				{
+					label.innerText=':|';
+				}
+			}
+		</script>
+	</body>
+</html>
